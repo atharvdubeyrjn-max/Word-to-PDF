@@ -1,0 +1,24 @@
+WORD → PDF HELPER
+
+What it does:
+1. Select a .doc/.docx Word file (or copy the file in Explorer and press Paste).
+2. Click Convert to PDF.
+3. Click Copy PDF.
+4. Open WhatsApp and press Ctrl+V to paste the PDF into the chat.
+
+Requirement:
+- Windows 10/11
+- Desktop Microsoft Word installed (the app uses Word's own PDF export, so formatting is preserved).
+
+Build the portable EXE:
+  dotnet restore
+  dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true -o publish
+
+Build the one-click installer:
+- Install Inno Setup.
+- Open Installer.iss in Inno Setup.
+- Build it.
+- The installer will be created in the installer folder as WordToPDF-Setup.exe.
+
+NOTE:
+The project intentionally uses Microsoft Word for conversion rather than a third-party PDF engine. This gives the best fidelity for legal documents, but it means Word must be installed on the computer.
